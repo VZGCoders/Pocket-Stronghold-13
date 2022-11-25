@@ -8,13 +8,13 @@
 	gender = NEUTER
 	speak_chance = 0
 	turns_per_move = 2
-	speed = 0.75
+	speed = 0.70
 	maxHealth = 650
 	health = 650
 	faction = list("mining")
 	weather_immunities = list("lava","ash")
 	see_in_dark = 1
-	butcher_results = list(/obj/item/food/meat/slab/troll = list(2,4), /obj/item/stack/ore/stone = list(3,6), /obj/item/stack/sheet/mineral/coal = list(1,5),/obj/item/food/intestines=list(2,4))
+	butcher_results = list(/obj/item/food/meat/slab/troll = list(4,8), /obj/item/stack/ore/stone = list(4,8), /obj/item/stack/sheet/mineral/coal = list(2,6),/obj/item/food/intestines=list(3,6))
 	hide_type = /obj/item/stack/sheet/animalhide/troll
 	response_help_continuous = "pushes"
 	response_help_simple = "pushes"
@@ -22,8 +22,8 @@
 	response_disarm_simple = "pushes"
 	response_harm_continuous = "hits"
 	response_harm_simple = "hits"
-	melee_damage_lower = 20
-	melee_damage_upper = 29
+	melee_damage_lower = 25
+	melee_damage_upper = 30
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attacks"
 	minbodytemp = 0
