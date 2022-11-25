@@ -31,9 +31,10 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	pixel_x = -16
 	var/rockfalling_last = 0
-	New()
-		pixel_x = -16
 	discovery_points = 10000
+	New()
+		..()
+		pixel_x = -16
 
 /mob/living/simple_animal/hostile/troll/Initialize()
 	. = ..()
