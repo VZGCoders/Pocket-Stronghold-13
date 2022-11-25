@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/troll
-	name = "troll"
-	desc = "Cute. Might kill you later."
+	name = "cave troll"
+	desc = "Monstrous, and smelly."
 	icon = 'dwarfs/icons/mob/hostile.dmi'
 	icon_state = "troll"
 	icon_living = "troll"
@@ -8,9 +8,9 @@
 	gender = NEUTER
 	speak_chance = 0
 	turns_per_move = 2
-	speed = 1.5
-	maxHealth = 350
-	health = 350
+	speed = 0.75
+	maxHealth = 650
+	health = 650
 	faction = list("mining")
 	weather_immunities = list("lava","ash")
 	see_in_dark = 1
@@ -22,15 +22,17 @@
 	response_disarm_simple = "pushes"
 	response_harm_continuous = "hits"
 	response_harm_simple = "hits"
-	melee_damage_lower = 15
-	melee_damage_upper = 25
+	melee_damage_lower = 20
+	melee_damage_upper = 29
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attacks"
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	gold_core_spawnable = HOSTILE_SPAWN
+	pixel_x = -16
 	var/rockfalling_last = 0
-
+	New()
+		pixel_x = -16
 	discovery_points = 10000
 
 /mob/living/simple_animal/hostile/troll/Initialize()
