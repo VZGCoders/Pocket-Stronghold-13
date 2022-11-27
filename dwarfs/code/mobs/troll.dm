@@ -8,9 +8,9 @@
 	gender = NEUTER
 	speak_chance = 0
 	turns_per_move = 2
-	speed = 0.70
-	maxHealth = 650
-	health = 650
+	speed = 0.75
+	maxHealth = 950
+	health = 950
 	faction = list("mining")
 	weather_immunities = list("lava","ash")
 	see_in_dark = 1
