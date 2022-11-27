@@ -40,8 +40,8 @@ GLOBAL_VAR_INIT(webhook_can_fire, 0)
 	var/list/query = list("ckey" = ckey, "token" = token)
 	webhook_send("token", query)
 
-/proc/webhook_send_respawn_notice(message)
-    var/list/query = list("message" = message)
+/proc/webhook_send_respawn_notice(ckey, message)
+    var/list/query = list("ckey" = ckey, "message" = message)
     webhook_send("respawn_notice", query)
 
 /proc/webhook_send_status_update(event, data)
