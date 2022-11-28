@@ -51,7 +51,7 @@
 					var/obj/item/S = new /obj/item/stack/ore/stone(src)
 					S.pixel_x = rand(-8, 8)
 					S.pixel_y = rand(-8, 8)
-                    if(prob(3))
+					if(prob(3))
 						var/obj/item/FE = new /obj/item/stack/ore/stone(src)
 						FE.pixel_x = rand(-8, 8)
 						FE.pixel_y = rand(-8, 8)
