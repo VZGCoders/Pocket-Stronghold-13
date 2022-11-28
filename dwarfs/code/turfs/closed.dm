@@ -6,7 +6,7 @@
 	environment_type = "stone_raw"
 	turf_type = /turf/open/floor/rock
 	baseturfs = /turf/open/floor/rock
-	mineralSpawnChanceList = list(/obj/item/stack/ore/smeltable/gold = 20, /obj/item/stack/ore/smeltable/iron = 40, /obj/item/stack/ore/gem/diamond=10,/obj/item/stack/ore/gem/ruby=10,/obj/item/stack/ore/gem/sapphire=10,/obj/item/stack/ore/coal=40)
+	mineralSpawnChanceList = list(/obj/item/stack/ore/smeltable/gold = 20, /obj/item/stack/ore/smeltable/iron = 65, /obj/item/stack/ore/gem/diamond=10,/obj/item/stack/ore/gem/ruby=10,/obj/item/stack/ore/gem/sapphire=10,/obj/item/stack/ore/coal=40)
 	mineralChance = 1
 
 /turf/closed/mineral/random/dwarf_lustress/gets_drilled(user, give_exp = FALSE)
@@ -14,6 +14,10 @@
 
 	if(prob(33))
 		new /obj/item/stack/ore/stone(src)
+	if(prob(12))
+		new /obj/item/stack/ore/smeltable/iron(src)
+	if(prob(5))
+		new /obj/item/stack/ore/coal(src)
 
 	if(prob(1))
 		to_chat(user, span_userdanger("THIS ROCK APPEARS TO BE ESPECIALLY SOFT!"))
