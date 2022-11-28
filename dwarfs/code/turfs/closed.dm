@@ -12,14 +12,14 @@
 /turf/closed/mineral/random/dwarf_lustress/gets_drilled(user, give_exp = FALSE)
 	. = ..()
 
-	if(prob(33))
+	if(prob(40))
 		new /obj/item/stack/ore/stone(src)
 	if(prob(12))
 		new /obj/item/stack/ore/smeltable/iron(src)
 	if(prob(5))
 		new /obj/item/stack/ore/coal(src)
 
-	if(prob(1))
+	if(prob(0.1))
 		to_chat(user, span_userdanger("THIS ROCK APPEARS TO BE ESPECIALLY SOFT!"))
 		new /mob/living/simple_animal/hostile/troll(src)
 
@@ -45,7 +45,7 @@
 
 /turf/closed/mineral/random/sand/gets_drilled(user, give_exp)
 	. = ..()
-	if(prob(33))
+	if(prob(40))
 		new /obj/item/stack/ore/smeltable/sand(src)
 	if(prob(5))
 		new /obj/item/stack/ore/smeltable/iron(src)

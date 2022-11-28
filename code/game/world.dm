@@ -230,9 +230,9 @@ GLOBAL_VAR_INIT(hub_mimic_desc, "GO! GO! GO!")
 	var/s = ""
 
 	if(!GLOB.hub_mimic)
-		s += "<big><b>Dwarf Fortress 13</b></big>\] <a href=\"https://discord.gg/rVK4VgEYmz\">DISCORD</a>\n\n"
+		s += "<big><b>Pocket Stronghold 13</b></big>\] <a href=\"https://discord.gg/wP6cdD3trz\">DISCORD</a> <a href=\"https://github.com/VZGCoders/Pocket-Stronghold-13\">GITHUB</a>\n\n"
 		s += "<img src='https://assets.station13.ru/l/d1.gif'>\n\n"
-		s += "\[<big>SLAVES TO ARMOK</big>"
+		s += "\[<big>GLORY TO OAKENSHIELD</big>"
 	else
 		s += "<big><b>[GLOB.hub_mimic]: RU</b></big>\] <a href=\"http://station13.ru\">SITE</a> | <a href=\"https://discord.gg/rVK4VgEYmz\">DISCORD</a>\n\n"
 		s += "<img src='https://assets.station13.ru/l/w[rand(4, 8)].gif'>\n\n"
