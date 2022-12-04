@@ -1,11 +1,11 @@
 //nutrition
 /datum/mood_event/fat
 	description = "<span class='warning'><B>I'm so fat...</B></span>\n" //muh fatshaming
-	mood_change = -6
+	mood_change = -5
 
 /datum/mood_event/wellfed
 	description = "<span class='nicegreen'>I'm stuffed!</span>\n"
-	mood_change = 8
+	mood_change = 10
 
 /datum/mood_event/fed
 	description = "<span class='nicegreen'>I have recently had some food.</span>\n"
@@ -13,11 +13,11 @@
 
 /datum/mood_event/hungry
 	description = "<span class='warning'>I'm getting a bit hungry.</span>\n"
-	mood_change = -6
+	mood_change = -5
 
 /datum/mood_event/starving
 	description = "<span class='boldwarning'>I'm starving!</span>\n"
-	mood_change = -10
+	mood_change = -15
 
 /datum/mood_event/ate_raw_food
 	description = span_red("I ate raw food.")
@@ -28,23 +28,23 @@
 
 /datum/mood_event/ate_raw_food/meat
 	description = span_red("I ate raw meat!")
-	mood_change = -8
+	mood_change = -5
 	timeout = 5 MINUTES
 
 /datum/mood_event/ate_meal
 	description = span_green("I ate a meal.")
 	mood_change = 10
-	timeout = 4 MINUTES
+	timeout = 10 MINUTES
 
 /datum/mood_event/ate_meal/decent
 	description = span_green("I ate a decent meal.")
 	mood_change = 15
-	timeout = 10 MINUTES
+	timeout = 20 MINUTES
 
 /datum/mood_event/ate_meal/luxurious
 	description = span_green("I ate a luxurious meal!")
 	mood_change = 20
-	timeout = 20 MINUTES
+	timeout = 30 MINUTES
 
 /datum/mood_event/ate_badfood
 	description = span_red("I ate a failed food!")
@@ -127,7 +127,7 @@
 //thirst
 /datum/mood_event/overhydrated
 	description = "<span class='warning'><B>TOO MUCH WATER...</B></span>\n"
-	mood_change = -3
+	mood_change = -1
 
 /datum/mood_event/hydrated
 	description = "<span class='nicegreen'>I don't feel thirsty.</span>\n"
