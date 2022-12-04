@@ -27,7 +27,7 @@
 	desc = "Quick snack, not really nutritious"
 	icon_state = "plump_kebab"
 	plate_type = /obj/item/stick
-	food_reagents = list(/datum/reagent/consumable/nutriment=55)
+	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 	mood_event_type = /datum/mood_event/ate_meal
 
 /obj/item/food/dish/salad

@@ -86,7 +86,7 @@
 	desc = "Grey wheat, growing in dark caves. Dwarfs favorirte beer component."
 	icon_state = "cave_wheat"
 	mood_gain = -3
-	food_reagents = list(/datum/reagent/consumable/nutriment=10)
+	food_reagents = list(/datum/reagent/consumable/nutriment=5)
 
 /obj/item/growable/cave_wheat/MakeGrindable()
 	AddComponent(/datum/component/grindable, /datum/reagent/grain/cave_wheat, 10)
@@ -96,7 +96,7 @@
 	desc = "Grain growing on the surface, most common in the human cities."
 	icon_state = "barley"
 	mood_gain = -3
-	food_reagents = list(/datum/reagent/consumable/nutriment=10)
+	food_reagents = list(/datum/reagent/consumable/nutriment=5)
 
 /obj/item/growable/barley/MakeGrindable()
 	AddComponent(/datum/component/grindable, /datum/reagent/grain/barley, 10)
@@ -107,7 +107,7 @@
 	icon_state = "turnip"
 	edible = TRUE
 	mood_gain = -1
-	food_reagents = list(/datum/reagent/consumable/nutriment=50)
+	food_reagents = list(/datum/reagent/consumable/nutriment=5)
 
 /obj/item/growable/carrot
 	name = "carrot"
@@ -115,7 +115,7 @@
 	icon_state = "carrot"
 	edible = TRUE
 	mood_gain = -1
-	food_reagents = list(/datum/reagent/consumable/nutriment=50)
+	food_reagents = list(/datum/reagent/consumable/nutriment=5)
 
 /obj/item/growable/cotton
 	name = "cotton"
@@ -135,7 +135,7 @@
 	icon_state = "sweet_pod"
 	edible = TRUE
 	mood_gain = -1
-	food_reagents = list(/datum/reagent/consumable/nutriment=50)
+	food_reagents = list(/datum/reagent/consumable/nutriment=5)
 
 /obj/item/growable/sweet_pod/MakePressable()
 	AddComponent(/datum/component/pressable, /datum/reagent/consumable/juice/sweet_pod, 10)
@@ -158,7 +158,7 @@
 	icon_state = "plump_helmet"
 	edible = TRUE
 	mood_gain = -2
-	food_reagents = list(/datum/reagent/consumable/nutriment=50)
+	food_reagents = list(/datum/reagent/consumable/nutriment=5)
 
 /obj/item/growable/plump_helmet/MakePressable()
 	AddComponent(/datum/component/pressable, /datum/reagent/consumable/juice/plump, 10)
