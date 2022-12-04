@@ -237,3 +237,28 @@
 /obj/item/reagent_containers/glass/cup/iron
 	name = "iron cup"
 	icon_state = "iron_cup"
+
+/// Flagon is pretty WIP///
+
+/obj/item/reagent_containers/glass/flagon
+	name = "flagon"
+	icon = 'dwarfs/icons/items/containers.dmi'
+	icon_state = "flagon"
+
+/obj/item/reagent_containers/glass/flagon/update_overlays()
+	. = ..()
+	if(reagents.total_volume)
+		var/mutable_appearance/M = mutable_appearance(icon, "flagon_overlay")
+		M.color = mix_color_from_reagents(reagents.reagent_list)
+		. += M
+
+/obj/item/reagent_containers/glass/flagon/on_reagent_change()
+	update_icon()
+
+/obj/item/reagent_containers/glass/flagon/update_icon()
+	overlays.Cut()
+	if (!is_open_container())
+		var/image/lid = image(icon, src, "[initial(icon_state)]_closed")
+		overlays += lid
+
+/////////////////////////////////////////////////////////////////////////

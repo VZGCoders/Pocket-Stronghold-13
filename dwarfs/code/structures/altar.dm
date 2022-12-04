@@ -100,6 +100,7 @@
 		if("dwarf")
 			active = TRUE
 			notify_ghosts("New dwarf is ready.", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Dwarf spawn available.")
+			webhook_send_respawn_notice(user.ckey, "New dwarf is ready.")
 		if("frog")
 			new /mob/living/simple_animal/hostile/retaliate/frog(loc)
 		if("tools")
