@@ -160,9 +160,11 @@
 //Used as an upper limit for species that continuously gain nutriment
 #define NUTRITION_LEVEL_ALMOST_FULL 590
 
+
 #define NUTRITION_LOSS_PER_SECOND 0
 #define NUTRITION_LOSS_PER_MOVE 0.10
 #define NUTRITION_LOSS_PER_CLICK 1
+
 
 //Hydration levels for humans
 #define HYDRATION_LEVEL_MAX 1200

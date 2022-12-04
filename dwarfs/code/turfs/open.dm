@@ -51,6 +51,10 @@
 					var/obj/item/S = new /obj/item/stack/ore/stone(src)
 					S.pixel_x = rand(-8, 8)
 					S.pixel_y = rand(-8, 8)
+					if(prob(3))
+						var/obj/item/FE = new /obj/item/stack/ore/smeltable/iron(src)
+						FE.pixel_x = rand(-8, 8)
+						FE.pixel_y = rand(-8, 8)
 				digged_up = TRUE
 				icon_state = "stone_dug"
 				user.visible_message(span_notice("<b>[user]</b> digs up some stones.") , \
@@ -112,7 +116,7 @@
 		if(I.use_tool(src, user, 10 SECONDS))
 			stop_sound_channel_nearby(src, channel)
 			var/turf/open/floor/tilled/T = ChangeTurf(/turf/open/floor/tilled)
-			if((locate(/turf/open/water) in range(1, T)))
+			if(((locate(/turf/open/water) in range(3, T))) || ((locate(/obj/structure/well) in range(3, T))))
 				T.waterlevel = T.watermax
 				T.update_appearance()
 			user.mind.adjust_experience(/datum/skill/farming, 7)
@@ -260,7 +264,7 @@
 
 /turf/open/floor/tilled/proc/on_eat(obj/structure/plant/source)
 	SIGNAL_HANDLER
-	if((locate(/turf/open/water) in range(1, src)))
+	if(((locate(/turf/open/water) in range(3, src))) || ((locate(/obj/structure/well) in range(3, src))))
 		waterlevel = watermax
 	waterlevel = clamp(waterlevel-waterrate, 0, watermax)
 	update_appearance()

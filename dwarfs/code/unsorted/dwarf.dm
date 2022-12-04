@@ -112,6 +112,7 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 
 /datum/outfit/dwarf/blacksmith
 	name = "Dwarf blacksmith"
+	uniform = /obj/item/clothing/under/smith
 	r_hand = /obj/item/tongs
 	l_hand = /obj/item/smithing_hammer
 	apply_grade = TRUE
