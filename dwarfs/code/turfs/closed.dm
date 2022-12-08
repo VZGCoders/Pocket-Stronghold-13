@@ -6,16 +6,20 @@
 	environment_type = "stone_raw"
 	turf_type = /turf/open/floor/rock
 	baseturfs = /turf/open/floor/rock
-	mineralSpawnChanceList = list(/obj/item/stack/ore/smeltable/gold = 20, /obj/item/stack/ore/smeltable/iron = 40, /obj/item/stack/ore/gem/diamond=10,/obj/item/stack/ore/gem/ruby=10,/obj/item/stack/ore/gem/sapphire=10,/obj/item/stack/ore/coal=40)
+	mineralSpawnChanceList = list(/obj/item/stack/ore/smeltable/gold = 20, /obj/item/stack/ore/smeltable/iron = 65, /obj/item/stack/ore/gem/diamond=10,/obj/item/stack/ore/gem/ruby=10,/obj/item/stack/ore/gem/sapphire=10,/obj/item/stack/ore/coal=45)
 	mineralChance = 1
 
 /turf/closed/mineral/random/dwarf_lustress/gets_drilled(user, give_exp = FALSE)
 	. = ..()
 
-	if(prob(33))
+	if(prob(40))
 		new /obj/item/stack/ore/stone(src)
+	if(prob(12))
+		new /obj/item/stack/ore/smeltable/iron(src)
+	if(prob(5))
+		new /obj/item/stack/ore/coal(src)
 
-	if(prob(1))
+	if(prob(0.1))
 		to_chat(user, span_userdanger("THIS ROCK APPEARS TO BE ESPECIALLY SOFT!"))
 		new /mob/living/simple_animal/hostile/troll(src)
 
@@ -31,7 +35,7 @@
 
 /turf/closed/mineral/random/sand
 	name = "sand"
-	mineralSpawnChanceList = list(/obj/item/stack/ore/smeltable/gold = 20, /obj/item/stack/ore/smeltable/iron = 40, /obj/item/stack/ore/gem/diamond=10,/obj/item/stack/ore/gem/ruby=10,/obj/item/stack/ore/gem/sapphire=10,/obj/item/stack/ore/coal=40)
+	mineralSpawnChanceList = list(/obj/item/stack/ore/smeltable/gold = 20, /obj/item/stack/ore/smeltable/iron = 65, /obj/item/stack/ore/gem/diamond=10,/obj/item/stack/ore/gem/ruby=10,/obj/item/stack/ore/gem/sapphire=10,/obj/item/stack/ore/coal=45)
 	mineralChance = 1.5
 	baseturfs = /turf/open/floor/sand
 	smooth_icon = 'dwarfs/icons/turf/walls_sandstone.dmi'
@@ -41,8 +45,10 @@
 
 /turf/closed/mineral/random/sand/gets_drilled(user, give_exp)
 	. = ..()
-	if(prob(33))
+	if(prob(40))
 		new /obj/item/stack/ore/smeltable/sand(src)
+	if(prob(5))
+		new /obj/item/stack/ore/smeltable/iron(src)
 
 /turf/closed/mineral/random/dwarf_lustress/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_CHISEL)

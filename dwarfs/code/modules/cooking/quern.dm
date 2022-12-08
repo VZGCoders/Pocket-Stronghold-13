@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	var/max_volume = 150
-	var/work_time = 10 SECONDS
+	var/work_time = 3 SECONDS
 	var/open = FALSE
 	var/busy_operating = FALSE
 

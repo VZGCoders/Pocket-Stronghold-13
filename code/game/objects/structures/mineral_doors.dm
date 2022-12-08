@@ -22,7 +22,7 @@
 	var/closeSound = 'sound/effects/stonedoor_openclose.ogg'
 
 	var/sheetType //what we're made of
-	var/sheetAmount = 7 //how much we drop when deconstructed
+	var/sheetAmount = 3 //how much we drop when deconstructed
 
 /obj/structure/mineral_door/Bumped(atom/movable/AM)
 	..()
