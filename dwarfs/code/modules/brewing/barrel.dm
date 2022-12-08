@@ -36,8 +36,7 @@
 		icon_state = "barrel_closed"
 
 /obj/structure/barrel/AltClick(mob/user)
-	var/dist = in_range(user, src)
-	if(dist <= 1)
+	if(in_range(user, src))
 		open = !open
 		to_chat(user, span_notice("You [open? "open" : "close"] \the [src]."))
 		update_appearance()
