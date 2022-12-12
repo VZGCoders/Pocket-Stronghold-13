@@ -22,8 +22,8 @@
 	response_disarm_simple = "pushes"
 	response_harm_continuous = "hits"
 	response_harm_simple = "hits"
-	melee_damage_lower = 25
-	melee_damage_upper = 30
+	melee_damage_lower = 35
+	melee_damage_upper = 40
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attacks"
 	minbodytemp = 0
