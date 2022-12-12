@@ -34,7 +34,7 @@
 	name = "salad"
 	desc = "Eat your veggies, son."
 	icon_state = "salad"
-	plate_type = /obj/item/reagent_containers/glass/plate/regular
+	plate_type = /obj/item/reagent_containers/glass/plate/bowl
 	food_reagents = list(/datum/reagent/consumable/nutriment=150)
 	mood_event_type = /datum/mood_event/ate_meal
 
