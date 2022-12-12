@@ -1,6 +1,6 @@
 /obj/structure/dwarf_altar
 	name = "Altar"
-	desc = "A place to praise The God of Blood"
+	desc = "A place to praise the gods"
 	icon = 'dwarfs/icons/structures/32x64.dmi'
 	icon_state = "altarus_off"
 	density = TRUE
