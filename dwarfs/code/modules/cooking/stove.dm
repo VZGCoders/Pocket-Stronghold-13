@@ -144,13 +144,14 @@
 	remove_timer(2)
 
 /obj/structure/stove/AltClick(mob/user)
-	if(working)
-		to_chat(user, span_warning("Cannot open while [src] is working."))
-		return
-	open = !open
-	update_appearance()
-	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
-	playsound(src, 'dwarfs/sounds/structures/toggle_open.ogg', 50, TRUE)
+	if(in_range(user, src))
+		if(working)
+			to_chat(user, span_warning("Cannot open while [src] is working."))
+			return
+		open = !open
+		update_appearance()
+		to_chat(user, span_notice("You [open?"open":"close"] [src]."))
+		playsound(src, 'dwarfs/sounds/structures/toggle_open.ogg', 50, TRUE)
 
 /obj/structure/stove/process(delta_time)
 	if(!working)
