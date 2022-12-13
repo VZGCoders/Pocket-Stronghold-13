@@ -222,10 +222,11 @@
 	var/obj/item/grinded
 
 /obj/item/reagent_containers/glass/mortar/AltClick(mob/user)
-	if(grinded)
-		grinded.forceMove(drop_location())
-		grinded = null
-		to_chat(user, span_notice("You eject the item inside."))
+	if(in_range(user, src))
+		if(grinded)
+			grinded.forceMove(drop_location())
+			grinded = null
+			to_chat(user, span_notice("You eject the item inside."))
 
 /obj/item/reagent_containers/glass/mortar/attackby(obj/item/I, mob/living/carbon/human/user)
 	..()
