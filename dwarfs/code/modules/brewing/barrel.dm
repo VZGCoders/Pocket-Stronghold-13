@@ -36,9 +36,10 @@
 		icon_state = "barrel_closed"
 
 /obj/structure/barrel/AltClick(mob/user)
-	open = !open
-	to_chat(user, span_notice("You [open? "open" : "close"] \the [src]."))
-	update_appearance()
+	if(in_range(user, src))
+		open = !open
+		to_chat(user, span_notice("You [open? "open" : "close"] \the [src]."))
+		update_appearance()
 
 /obj/structure/barrel/attackby(obj/item/I, mob/user, params)
 	if(!open)

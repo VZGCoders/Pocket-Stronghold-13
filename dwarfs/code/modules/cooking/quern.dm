@@ -97,12 +97,13 @@
 	to_chat(user, span_notice("You finish working at [src]."))
 
 /obj/structure/quern/AltClick(mob/user)
-	if(busy_operating)
-		to_chat(user, span_warning("Cannot open [src] while it's rotating."))
-		return
-	open = !open
-	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
-	update_appearance()
+	if(in_range(user, src))
+		if(busy_operating)
+			to_chat(user, span_warning("Cannot open [src] while it's rotating."))
+			return
+		open = !open
+		to_chat(user, span_notice("You [open?"open":"close"] [src]."))
+		update_appearance()
 
 /obj/structure/quern/CtrlClick(mob/user)
 	. = ..()

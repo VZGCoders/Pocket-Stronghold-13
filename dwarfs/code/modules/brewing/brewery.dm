@@ -42,13 +42,14 @@
 	START_PROCESSING(SSprocessing, src)
 
 /obj/structure/brewery/l/AltClick(mob/user)
-	if(working)
-		to_chat(user, span_warning("Cannot open [src] while it's working."))
-		return
-	open = !open
-	update_appearance()
-	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
-	playsound(src, 'dwarfs/sounds/structures/toggle_open.ogg', 50, TRUE)
+	if(in_range(user, src))
+		if(working)
+			to_chat(user, span_warning("Cannot open [src] while it's working."))
+			return
+		open = !open
+		update_appearance()
+		to_chat(user, span_notice("You [open?"open":"close"] [src]."))
+		playsound(src, 'dwarfs/sounds/structures/toggle_open.ogg', 50, TRUE)
 
 /obj/structure/brewery/l/attackby(obj/item/I, mob/user, params)
 	if(I.get_fuel())
