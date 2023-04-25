@@ -1167,6 +1167,7 @@
 #include "dwarfs\code\items\damaz.dm"
 #include "dwarfs\code\items\ores.dm"
 #include "dwarfs\code\items\tools.dm"
+#include "dwarfs\code\mobs\caverncrab.dm"
 #include "dwarfs\code\mobs\furmogus.dm"
 #include "dwarfs\code\mobs\mobs.dm"
 #include "dwarfs\code\mobs\troll.dm"

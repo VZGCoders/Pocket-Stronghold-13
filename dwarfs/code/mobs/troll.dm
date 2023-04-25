@@ -6,6 +6,7 @@
 	icon_living = "troll"
 	icon_dead = "troll_dead"
 	gender = NEUTER
+	movement_shake_radius = 5
 	speak_chance = 0
 	turns_per_move = 2
 	speed = 0.75
@@ -76,3 +77,39 @@
 /mob/living/simple_animal/hostile/troll/death(gibbed)
 	. = ..()
 	playsound(src, 'dwarfs/sounds/mobs/troll/troll_death.ogg', 70, TRUE)
+
+/mob/living/simple_animal/hostile/troll/pale
+	name = "pale cave troll"
+	desc = "Extremely white, it seems highly agitated."
+	icon = 'dwarfs/icons/mob/hostile.dmi'
+	icon_state = "paletroll"
+	icon_living = "paletroll"
+	icon_dead = "paletroll_dead"
+	gender = NEUTER
+	movement_shake_radius = 6
+	speak_chance = 1
+	speak_emote = list("grumbles")
+	speak = list("ukner", "aghna", "thruntaki!", "krimp", "kull munn")
+	turns_per_move = 2
+	speed = 0.55
+	maxHealth = 2500
+	health = 2500
+	faction = list("mining")
+	weather_immunities = list("lava","ash")
+	see_in_dark = 1
+	butcher_results = list(/obj/item/food/meat/slab/troll = list(6,10), /obj/item/stack/ore/stone = list(4,8), /obj/item/stack/sheet/mineral/coal = list(2,6),/obj/item/food/intestines=list(3,6))
+	hide_type = /obj/item/stack/sheet/animalhide/troll
+	response_help_continuous = "pushes"
+	response_help_simple = "pushes"
+	response_disarm_continuous = "pushes"
+	response_disarm_simple = "pushes"
+	response_harm_continuous = "hits"
+	response_harm_simple = "hits"
+	melee_damage_lower = 45
+	melee_damage_upper = 60
+	attack_verb_continuous = "bashes"
+	attack_verb_simple = "bashes"
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	gold_core_spawnable = HOSTILE_SPAWN
+	pixel_x = -16
