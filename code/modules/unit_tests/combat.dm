@@ -39,9 +39,9 @@
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human)
 	var/obj/item/kitchen/knife/knife = allocate(/obj/item/kitchen/knife)
 
-	RegisterSignal(knife, COMSIG_ITEM_PRE_ATTACK, .proc/pre_attack_hit)
-	RegisterSignal(knife, COMSIG_ITEM_ATTACK, .proc/attack_hit)
-	RegisterSignal(knife, COMSIG_ITEM_AFTERATTACK, .proc/post_attack_hit)
+	RegisterSignal(knife, COMSIG_ITEM_PRE_ATTACK, PROC_REF(pre_attack_hit))
+	RegisterSignal(knife, COMSIG_ITEM_ATTACK, PROC_REF(attack_hit))
+	RegisterSignal(knife, COMSIG_ITEM_AFTERATTACK, PROC_REF(post_attack_hit))
 
 	attacker.put_in_active_hand(knife, forced = TRUE)
 	attacker.a_intent_change(INTENT_HARM)

@@ -49,7 +49,7 @@
 		I.forceMove(src)
 		to_chat(user, span_notice("You place \the [I] inside [src]."))
 		if(working)
-			timerid = addtimer(CALLBACK(src, .proc/try_cook, I, user), cooking_time, TIMER_STOPPABLE)
+			timerid = addtimer(CALLBACK(src, PROC_REF(try_cook), I, user), cooking_time, TIMER_STOPPABLE)
 	else if(I.get_temperature())
 		if(!fuel)
 			to_chat(user, span_warning("[src] has no fuel."))
@@ -61,7 +61,7 @@
 		playsound(src, 'dwarfs/sounds/effects/ignite.ogg', 50, TRUE)
 		working = TRUE
 		if(contents.len)
-			timerid = addtimer(CALLBACK(src, .proc/try_cook, contents[1], user), cooking_time, TIMER_STOPPABLE)
+			timerid = addtimer(CALLBACK(src, PROC_REF(try_cook), contents[1], user), cooking_time, TIMER_STOPPABLE)
 		update_appearance()
 	else if(I.get_fuel())
 		fuel += I.get_fuel()

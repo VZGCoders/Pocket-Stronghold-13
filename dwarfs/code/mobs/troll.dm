@@ -33,9 +33,13 @@
 	pixel_x = -16
 	var/rockfalling_last = 0
 	discovery_points = 10000
-	New()
-		..()
-		pixel_x = -16
+	//New()
+		//. = ..()
+		//pixel_x = -16
+
+/mob/living/simple_animal/hostile/troll/New()
+	. = ..()
+	pixel_x = -16
 
 /mob/living/simple_animal/hostile/troll/Initialize()
 	. = ..()
@@ -68,7 +72,7 @@
 
 /obj/effect/temp_visual/rockfall/Initialize(mapload)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/fall)
+	INVOKE_ASYNC(src, PROC_REF(fall))
 
 /obj/effect/temp_visual/rockfall/proc/fall()
 	var/turf/T = get_turf(src)

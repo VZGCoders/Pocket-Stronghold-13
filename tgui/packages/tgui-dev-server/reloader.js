@@ -93,6 +93,9 @@ export const reloadByondCache = async bundleDir => {
     // Clear garbage
     const garbage = await resolveGlob(cacheDir, './*.+(bundle|chunk|hot-update).*');
     try {
+      // Plant a dummy
+      fs.closeSync(fs.openSync(cacheRoot + '/dummy', 'w'));
+
       for (let file of garbage) {
         fs.unlinkSync(file);
       }

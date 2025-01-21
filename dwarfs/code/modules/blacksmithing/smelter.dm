@@ -55,7 +55,7 @@
 		start_smelting()
 
 /obj/structure/smelter/proc/start_smelting()
-	timerid = addtimer(CALLBACK(src, .proc/smelted_thing), smelting_time, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, PROC_REF(smelted_thing)), smelting_time, TIMER_STOPPABLE)
 
 /obj/structure/smelter/proc/remove_timer()
 	if(active_timers)

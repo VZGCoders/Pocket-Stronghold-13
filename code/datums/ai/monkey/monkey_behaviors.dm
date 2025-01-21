@@ -73,7 +73,7 @@
 	. = ..()
 	if(controller.blackboard[BB_MONKEY_PICKPOCKETING]) //We are pickpocketing, don't do ANYTHING!!!!
 		return
-	INVOKE_ASYNC(src, .proc/attempt_pickpocket, controller)
+	INVOKE_ASYNC(src, PROC_REF(attempt_pickpocket), controller)
 
 /datum/ai_behavior/monkey_equip/pickpocket/proc/attempt_pickpocket(datum/ai_controller/controller)
 	var/obj/item/target = controller.blackboard[BB_MONKEY_PICKUPTARGET]

@@ -9,7 +9,7 @@
 	src.pressable_liquid_type = pressable_liquid_type
 	src.liquid_amount = liquid_amount
 
-	RegisterSignal(parent, COSMIG_ITEM_SQUEEZED, .proc/squeeze)
+	RegisterSignal(parent, COSMIG_ITEM_SQUEEZED, PROC_REF(squeeze))
 
 /datum/component/pressable/proc/squeeze(obj/item/growable/G, obj/structure/press/P, amt_types = 1)
 	SIGNAL_HANDLER

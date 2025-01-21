@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	natural = !forced
 
 	// Cancel early if the target is deleted
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/target_deleting)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(target_deleting))
 
 /datum/hallucination/proc/target_deleting()
 	SIGNAL_HANDLER
@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			process = FALSE
 			target.playsound_local(source, 'sound/weapons/egloves.ogg', 40, 1)
 			target.playsound_local(source, get_sfx("bodyfall"), 25, 1)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/weapons/cablecuff.ogg', 15, 1), 20)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, 'sound/weapons/cablecuff.ogg', 15, 1), 20)
 		if("harmbaton") //zap n slap
 			iterations_left = rand(5, 12)
 			target.playsound_local(source, 'sound/weapons/egloves.ogg', 40, 1)
@@ -235,15 +235,15 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.playsound_local(source, fire_sound, 25, 1)
 
 			if(prob(50))
-				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, hit_person_sound, 25, 1), rand(5,10))
+				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, hit_person_sound, 25, 1), rand(5,10))
 				hits += 1
 			else
-				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, hit_wall_sound, 25, 1), rand(5,10))
+				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, hit_wall_sound, 25, 1), rand(5,10))
 
 			next_action = rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6)
 
 			if(hits >= number_of_hits && prob(chance_to_fall))
-				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, get_sfx("bodyfall"), 25, 1), next_action)
+				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, get_sfx("bodyfall"), 25, 1), next_action)
 				qdel(src)
 				return
 		if ("esword")
@@ -310,7 +310,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		// switch(item)
 		if(target?.client)
 			target.client.images |= A
-			addtimer(CALLBACK(src, .proc/cleanup, item, A, H), rand(15 SECONDS, 25 SECONDS))
+			addtimer(CALLBACK(src, PROC_REF(cleanup), item, A, H), rand(15 SECONDS, 25 SECONDS))
 			return
 	qdel(src)
 
@@ -443,7 +443,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	// Display message
 	if (!is_radio && !target.client?.prefs.chat_on_map)
 		var/image/speech_overlay = image('icons/mob/talk.dmi', person, "default0", layer = ABOVE_MOB_LAYER)
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, speech_overlay, list(target.client), 30)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), speech_overlay, list(target.client), 30)
 	if (target.client?.prefs.chat_on_map || isdead(target))
 		target.create_chat_message(person, understood_language, chosen, spans)
 	to_chat(target, message)
@@ -519,7 +519,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.playsound_local(source,'sound/machines/airlock.ogg', 30, 1)
 		if("airlock pry")
 			target.playsound_local(source,'sound/machines/airlock_alien_prying.ogg', 100, 1)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/machines/airlockforced.ogg', 30, 1), 50)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, 'sound/machines/airlockforced.ogg', 30, 1), 50)
 		if("console")
 			target.playsound_local(source,'sound/machines/terminal_prompt.ogg', 25, 1)
 		if("explosion")
@@ -540,12 +540,12 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		//Deconstructing a wall
 		if("wall decon")
 			target.playsound_local(source, 'sound/items/welder.ogg', 50, 1)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/items/welder2.ogg', 50, 1), 105)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/items/ratchet.ogg', 50, 1), 120)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, 'sound/items/welder2.ogg', 50, 1), 105)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, 'sound/items/ratchet.ogg', 50, 1), 120)
 		//Hacking a door
 		if("door hack")
 			target.playsound_local(source, 'sound/items/screwdriver.ogg', 50, 1)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/machines/airlockforced.ogg', 30, 1), rand(40, 80))
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, 'sound/machines/airlockforced.ogg', 30, 1), rand(40, 80))
 	qdel(src)
 
 /datum/hallucination/mech_sounds
@@ -597,7 +597,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("phone")
 			target.playsound_local(source, 'sound/weapons/ring.ogg', 15)
 			for (var/next_rings in 1 to 3)
-				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/weapons/ring.ogg', 15), 25 * next_rings)
+				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, 'sound/weapons/ring.ogg', 15), 25 * next_rings)
 		if("hyperspace")
 			target.playsound_local(null, 'sound/runtime/hyperspace/hyperspace_begin.ogg', 50)
 		if("hallelujah")
@@ -614,8 +614,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.playsound_local(source, pick(GLOB.creepy_ambience), 50, 1)
 		if("tesla") //Tesla loose!
 			target.playsound_local(source, 'sound/magic/lightningbolt.ogg', 35, 1)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/magic/lightningbolt.ogg', 65, 1), 30)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/magic/lightningbolt.ogg', 100, 1), 60)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, 'sound/magic/lightningbolt.ogg', 65, 1), 30)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/, playsound_local), source, 'sound/magic/lightningbolt.ogg', 100, 1), 60)
 
 	qdel(src)
 
@@ -682,7 +682,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("charge")
 			target.throw_alert(alert_type, /atom/movable/screen/alert/emptycell, override = TRUE)
 
-	addtimer(CALLBACK(src, .proc/cleanup), duration)
+	addtimer(CALLBACK(src, PROC_REF(cleanup)), duration)
 
 /datum/hallucination/fake_alert/proc/cleanup()
 	target.clear_alert(alert_type, clear_override = TRUE)
@@ -702,7 +702,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	LAZYSET(human_mob.hal_screwydoll, specific_limb, severity)
 	human_mob.update_health_hud()
 
-	timer_id = addtimer(CALLBACK(src, .proc/cleanup), duration, TIMER_STOPPABLE)
+	timer_id = addtimer(CALLBACK(src, PROC_REF(cleanup)), duration, TIMER_STOPPABLE)
 
 ///Increments the severity of the damage seen on the doll
 /datum/hallucination/fake_health_doll/proc/increment_fake_damage()
@@ -793,7 +793,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /obj/effect/hallucination/danger/lava/Initialize(mapload, _target)
 	. = ..()
 	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_entered,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
@@ -814,7 +814,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /obj/effect/hallucination/danger/chasm/Initialize(mapload, _target)
 	. = ..()
 	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_entered,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
@@ -831,7 +831,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			return
 		to_chat(target, span_userdanger("You fall into the chasm!"))
 		target.Paralyze(40)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, target, span_notice("It's suprisingly shallow.")), 15)
+		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), target, span_notice("It's suprisingly shallow.")), 15)
 		QDEL_IN(src, 30)
 
 /obj/effect/hallucination/danger/anomaly
@@ -841,7 +841,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_entered,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
@@ -884,10 +884,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			fakemob = target //ever been so lonely you had to haunt yourself?
 		if(fakemob)
 			delay = rand(20, 50)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, target, "<span class='deadsay'><b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.first_name()]","git gud","you too?","is the AI rogue?",\
+			addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), target, "<span class='deadsay'><b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.first_name()]","git gud","you too?","is the AI rogue?",\
 				"i[prob(50)?" fucking":""] hate [pick("blood cult", "clock cult", "revenants", "this round","this","myself","admins","you")]")]\"</span>"), delay)
 
-	addtimer(CALLBACK(src, .proc/cleanup), delay + rand(70, 90))
+	addtimer(CALLBACK(src, PROC_REF(cleanup)), delay + rand(70, 90))
 
 /datum/hallucination/death/proc/cleanup()
 	if (target)
@@ -920,7 +920,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	to_chat(target, span_userdanger("You're set on fire!"))
 	target.throw_alert("fire", /atom/movable/screen/alert/fire, override = TRUE)
 	times_to_lower_stamina = rand(5, 10)
-	addtimer(CALLBACK(src, .proc/start_expanding), 20)
+	addtimer(CALLBACK(src, PROC_REF(start_expanding)), 20)
 
 /datum/hallucination/fire/Destroy()
 	. = ..()

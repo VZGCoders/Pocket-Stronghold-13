@@ -92,9 +92,9 @@
 			myplant = P
 			P.plot = src
 			myplant.update_appearance()
-			RegisterSignal(P, COSMIG_PLANT_DAMAGE_TICK, .proc/on_damage)
-			RegisterSignal(P, COSMIG_PLANT_ON_GROW, .proc/on_grow)
-			RegisterSignal(P, COSMIG_PLANT_DIES, .proc/on_death)
+			RegisterSignal(P, COSMIG_PLANT_DAMAGE_TICK, PROC_REF(on_damage))
+			RegisterSignal(P, COSMIG_PLANT_ON_GROW, PROC_REF(on_grow))
+			RegisterSignal(P, COSMIG_PLANT_DIES, PROC_REF(on_death))
 			update_appearance()
 			return
 		else

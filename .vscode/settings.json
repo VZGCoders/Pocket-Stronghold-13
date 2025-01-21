@@ -10,7 +10,7 @@
 		"**/.pnp.*": true
 	},
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
+		"source.fixAll.eslint": "explicit"
 	},
 	"workbench.editorAssociations": {
 		"*.dmi": "dmiEditor.dmiEditor",
@@ -31,5 +31,6 @@
 	},
 	"explorer.autoReveal": "focusNoScroll",
 	"dreammaker.tickOnCreate": true,
-	"dreammaker.debugServerDll": "debug_server.dll"
+	"dreammaker.debugServerDll": "debug_server.dll",
+	"dotnet.preferCSharpExtension": true
 }

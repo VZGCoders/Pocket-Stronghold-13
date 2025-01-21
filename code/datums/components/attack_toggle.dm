@@ -22,7 +22,7 @@
 
 	P.attach_action(/datum/action/toggle_attack)
 
-	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, .proc/afterattack)
+	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(afterattack))
 
 /datum/component/attack_toggle/proc/toggle_attack(mob/user)
 	if(current_atck_index == attacks.len)

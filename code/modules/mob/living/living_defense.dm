@@ -295,7 +295,7 @@
 		return FALSE
 	if(get_eye_protection() < intensity && (override_blindness_check || !is_blind()))
 		overlay_fullscreen("flash", type)
-		addtimer(CALLBACK(src, .proc/clear_fullscreen, "flash", length), length)
+		addtimer(CALLBACK(src, PROC_REF(clear_fullscreen), "flash", length), length)
 		return TRUE
 	return FALSE
 

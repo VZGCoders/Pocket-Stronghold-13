@@ -102,7 +102,7 @@ multiple modular subtrees with behaviors
 	else
 		set_ai_status(AI_STATUS_ON)
 
-	RegisterSignal(pawn, COMSIG_MOB_LOGIN, .proc/on_sentience_gained)
+	RegisterSignal(pawn, COMSIG_MOB_LOGIN, PROC_REF(on_sentience_gained))
 
 ///Abstract proc for initializing the pawn to the new controller
 /datum/ai_controller/proc/TryPossessPawn(atom/new_pawn)
@@ -236,10 +236,10 @@ multiple modular subtrees with behaviors
 	UnregisterSignal(pawn, COMSIG_MOB_LOGIN)
 	if(!continue_processing_when_client)
 		set_ai_status(AI_STATUS_OFF) //Can't do anything while player is connected
-	RegisterSignal(pawn, COMSIG_MOB_LOGOUT, .proc/on_sentience_lost)
+	RegisterSignal(pawn, COMSIG_MOB_LOGOUT, PROC_REF(on_sentience_lost))
 
 /datum/ai_controller/proc/on_sentience_lost()
 	SIGNAL_HANDLER
 	UnregisterSignal(pawn, COMSIG_MOB_LOGOUT)
 	set_ai_status(AI_STATUS_ON) //Can't do anything while player is connected
-	RegisterSignal(pawn, COMSIG_MOB_LOGIN, .proc/on_sentience_gained)
+	RegisterSignal(pawn, COMSIG_MOB_LOGIN, PROC_REF(on_sentience_gained))

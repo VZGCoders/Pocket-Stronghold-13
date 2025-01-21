@@ -16,7 +16,7 @@
 		I.forceMove(src)
 		to_chat(user, span_notice("You attach [I] to [src]."))
 		update_appearance()
-		timerid = addtimer(CALLBACK(src, .proc/dry), tanning_time, TIMER_STOPPABLE)
+		timerid = addtimer(CALLBACK(src, PROC_REF(dry)), tanning_time, TIMER_STOPPABLE)
 	else
 		. = ..()
 

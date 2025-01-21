@@ -20,7 +20,7 @@
 			C.visible_message(span_danger("<B>[C]'s [name] is violently dismembered!</B>"))
 		else
 			C.visible_message(span_danger("<B>[C]'s [src] flies apart!</B>"))
-	INVOKE_ASYNC(C, /mob.proc/emote, "agony")
+	INVOKE_ASYNC(C, TYPE_PROC_REF(/mob, emote), "agony")
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	if(detach_limb)
 		playsound(get_turf(C), 'sound/effects/dismember.ogg', 80, TRUE)

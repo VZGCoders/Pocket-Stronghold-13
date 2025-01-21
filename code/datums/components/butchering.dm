@@ -26,7 +26,7 @@
 	if(_butcher_callback)
 		butcher_callback = _butcher_callback
 	if(isitem(parent))
-		RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/onItemAttack)
+		RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(onItemAttack))
 
 /datum/component/butchering/proc/onItemAttack(obj/item/source, mob/living/M, mob/living/user)
 	SIGNAL_HANDLER
@@ -38,10 +38,10 @@
 	var/mob/living/simple_animal/A = M
 	if(A.stat == DEAD && A.butcher_results) //can we butcher it?
 		if(butchering_enabled && !A.skinned && A.hide_type)
-			INVOKE_ASYNC(src, .proc/startSkin, source, A, user)
+			INVOKE_ASYNC(src, PROC_REF(startSkin), source, A, user)
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 		if(butchering_enabled && (can_be_blunt || source.get_sharpness()))
-			INVOKE_ASYNC(src, .proc/startButcher, source, A, user)
+			INVOKE_ASYNC(src, PROC_REF(startButcher), source, A, user)
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /datum/component/butchering/proc/startButcher(obj/item/source, mob/living/simple_animal/M, mob/living/user)

@@ -31,11 +31,11 @@
 /datum/component/riding/Initialize()
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, .proc/vehicle_turned)
-	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, .proc/vehicle_mob_buckle)
-	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/vehicle_moved)
-
+	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(vehicle_turned))
+	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, PROC_REF(vehicle_mob_buckle))
+	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved)
+	)
 /datum/component/riding/proc/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
 	SIGNAL_HANDLER
 
@@ -187,6 +187,7 @@
 		return (allow_one_away_from_valid_turf && !forbid_turf_typecache[current.type])
 	return TRUE
 
+/*
 /datum/component/riding/proc/handle_ride(mob/user, direction)
 	var/atom/movable/AM = parent
 	if(user.incapacitated())
@@ -222,9 +223,10 @@
 		handle_vehicle_offsets(AM.dir)
 	else
 		to_chat(user, span_warning("You'll need a special item in one of your hands to [drive_verb] [AM]."))
+*/
 
 /datum/component/riding/proc/Unbuckle(atom/movable/M)
-	addtimer(CALLBACK(parent, /atom/movable/.proc/unbuckle_mob, M), 0, TIMER_UNIQUE)
+	addtimer(CALLBACK(parent, TYPE_PROC_REF(/atom/movable/, unbuckle_mob), M), 0, TIMER_UNIQUE)
 
 /datum/component/riding/proc/Process_Spacemove(direction)
 	var/atom/movable/AM = parent
@@ -244,7 +246,7 @@
 
 /datum/component/riding/human/Initialize()
 	. = ..()
-	RegisterSignal(parent, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_host_unarmed_melee)
+	RegisterSignal(parent, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_host_unarmed_melee))
 
 /datum/component/riding/human/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
 	unequip_buckle_inhands(parent)
@@ -300,7 +302,11 @@
 /datum/component/riding/cyborg
 	del_on_unbuckle_all = TRUE
 
-/datum/component/riding/cyborg/ride_check(mob/user)
+//Now onto cyborg riding//
+/datum/component/riding/creature/cyborg
+	can_be_driven = FALSE
+
+/*/datum/component/riding/cyborg/ride_check(mob/user)
 	var/atom/movable/AM = parent
 	if(user.incapacitated())
 		to_chat(user, span_userdanger("You fall off of [AM]!"))
@@ -311,7 +317,18 @@
 		if(!carbonuser.usable_hands)
 			Unbuckle(user)
 			to_chat(user, span_warning("You can't grab onto [AM] with no hands!"))
-			return
+			return*/
+
+/*
+/datum/component/riding/creature/cyborg/ride_check(mob/living/user, consequences = TRUE)
+	var/mob/living/silicon/robot/robot_parent = parent
+	if(!iscarbon(user))
+		return TRUE
+	. = user.usable_hands
+	if(!. && consequences)
+		Unbuckle(user)
+		to_chat(user, span_warning("You can't grab onto [robot_parent] with no hands!"))
+*/
 
 /datum/component/riding/cyborg/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent

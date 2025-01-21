@@ -162,7 +162,7 @@
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
 		C.visible_message(span_danger("The [zone_name] on [C] [src.name] is [break_verb] away!") , span_userdanger("The [zone_name] on your [src.name] is [break_verb] away!") , vision_distance = COMBAT_MESSAGE_RANGE)
-		RegisterSignal(C, COMSIG_MOVABLE_MOVED, .proc/bristle, override = TRUE)
+		RegisterSignal(C, COMSIG_MOVABLE_MOVED, PROC_REF(bristle), override = TRUE)
 
 	zones_disabled++
 	for(var/i in zone2body_parts_covered(def_zone))
@@ -207,7 +207,7 @@
 		return
 	if(slot_flags & slot) //Was equipped to a valid slot for this item?
 		if(iscarbon(user) && LAZYLEN(zones_disabled))
-			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/bristle, override = TRUE)
+			RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(bristle), override = TRUE)
 		for(var/trait in clothing_traits)
 			ADD_TRAIT(user, trait, "[CLOTHING_TRAIT] [REF(src)]")
 		if (LAZYLEN(user_vars_to_edit))
@@ -429,16 +429,15 @@ BLIND     // can't see anything
 		tint ^= initial(tint)
 
 /obj/item/clothing/proc/can_use(mob/user)
-	if(user && ismob(user))
-		if(!user.incapacitated())
-			return 1
-	return 0
+	return istype(user) && !user.incapacitated
+
+/obj/item/clothing/proc/spawn_shreds()
+	new /obj/effect/decal/cleanable/shreds(get_turf(src), name)
 
 /obj/item/clothing/obj_destruction(damage_flag)
 	if(damage_flag == BLUNT)
-		var/turf/T = get_turf(src)
 		//so the shred survives potential turf change from the explosion.
-		addtimer(CALLBACK_NEW(/obj/effect/decal/cleanable/shreds, list(T, name)), 1)
+		addtimer(CALLBACK(src, PROC_REF(spawn_shreds)), 0.1 SECONDS)
 		deconstruct(FALSE)
 	if(!(damage_flag in list(ACID, FIRE)))
 		body_parts_covered = NONE

@@ -45,7 +45,7 @@
 				eat_time = eat_time,\
 				tastes = tastes,\
 				bite_consumption = bite_consumption,\
-				on_consume = CALLBACK(src, .proc/on_consume))
+				on_consume = CALLBACK(src, PROC_REF(on_consume)))
 	MakeGrindable()
 	MakePressable()
 	MakeProcessable()

@@ -183,12 +183,12 @@
 
 /obj/structure/stove/proc/start_cooking(obj/item/I=null, item_slot=null, mob/user)
 	if(item_slot && I)
-		timers[item_slot] = addtimer(CALLBACK(src, .proc/try_cook, I, user), cook_time, TIMER_STOPPABLE)
+		timers[item_slot] = addtimer(CALLBACK(src, PROC_REF(try_cook), I, user), cook_time, TIMER_STOPPABLE)
 	else
 		if(left_item)
-			timers[1] = addtimer(CALLBACK(src, .proc/try_cook, left_item, user), cook_time, TIMER_STOPPABLE)
+			timers[1] = addtimer(CALLBACK(src, PROC_REF(try_cook), left_item, user), cook_time, TIMER_STOPPABLE)
 		if(right_item)
-			timers[2] = addtimer(CALLBACK(src, .proc/try_cook, right_item, user), cook_time, TIMER_STOPPABLE)
+			timers[2] = addtimer(CALLBACK(src, PROC_REF(try_cook), right_item, user), cook_time, TIMER_STOPPABLE)
 
 /obj/structure/stove/proc/try_cook(obj/item/I, mob/user)
 	var/list/possible_recipes = list()

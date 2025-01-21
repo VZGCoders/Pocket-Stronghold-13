@@ -36,8 +36,8 @@
 		item.inhand_icon_state = inhand_icon_state
 	update_item()
 
-	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, .proc/dragged)
-	RegisterSignal(parent, COMSIG_ATOM_UPDATE_APPEARANCE, .proc/update_item)
+	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, PROC_REF(dragged))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_APPEARANCE, PROC_REF(update_item))
 
 /datum/component/liftable/proc/dragged(atom/over, src_location, over_location, src_control, over_control, params, forced = FALSE)
 	if(src_location != over_location)

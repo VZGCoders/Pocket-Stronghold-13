@@ -256,6 +256,7 @@
 	update_icon()
 
 /obj/item/reagent_containers/glass/flagon/update_icon()
+	. = ..()
 	overlays.Cut()
 	if (!is_open_container())
 		var/image/lid = image(icon, src, "[initial(icon_state)]_closed")

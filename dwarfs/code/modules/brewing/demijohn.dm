@@ -13,7 +13,7 @@
 	. = ..()
 	AddComponent(/datum/component/liftable, slowdown = 5, worn_icon='dwarfs/icons/mob/inhand/righthand.dmi', inhand_icon_state="demijohn")
 	create_reagents(max_volume)
-	RegisterSignal(src, COSMIG_DEMIJOHN_STOP, .proc/restart_fermentation)
+	RegisterSignal(src, COSMIG_DEMIJOHN_STOP, PROC_REF(restart_fermentation))
 
 /obj/structure/demijohn/Destroy()
 	. = ..()
@@ -30,7 +30,7 @@
 		if(!transfered)
 			return FALSE
 		stop_fermentation()
-		timerid = addtimer(CALLBACK(src, .proc/start_fermentation), wait_before_start, TIMER_STOPPABLE)
+		timerid = addtimer(CALLBACK(src, PROC_REF(start_fermentation)), wait_before_start, TIMER_STOPPABLE)
 		to_chat(user, span_notice("You transfer [transfered]u to [src]."))
 		update_appearance()
 	else if(istype(I, /obj/item/liftable))
@@ -41,7 +41,7 @@
 		if(!transfered)
 			return FALSE
 		stop_fermentation()
-		timerid = addtimer(CALLBACK(src, .proc/start_fermentation), wait_before_start, TIMER_STOPPABLE)
+		timerid = addtimer(CALLBACK(src, PROC_REF(start_fermentation)), wait_before_start, TIMER_STOPPABLE)
 		to_chat(user, span_notice("You transfer [transfered]u to [src]."))
 		L.parent.update_appearance()
 		update_appearance()
@@ -57,7 +57,7 @@
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 		stop_fermentation()
 		if(reagents.total_volume)
-			timerid = addtimer(CALLBACK(src, .proc/start_fermentation), wait_before_start, TIMER_STOPPABLE)
+			timerid = addtimer(CALLBACK(src, PROC_REF(start_fermentation)), wait_before_start, TIMER_STOPPABLE)
 		to_chat(user, span_notice("You take [transfered]u from [src]."))
 		update_appearance()
 	else if(istype(weapon, /obj/item/liftable))
@@ -69,7 +69,7 @@
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 		stop_fermentation()
 		if(reagents.total_volume)
-			timerid = addtimer(CALLBACK(src, .proc/start_fermentation), wait_before_start, TIMER_STOPPABLE)
+			timerid = addtimer(CALLBACK(src, PROC_REF(start_fermentation)), wait_before_start, TIMER_STOPPABLE)
 		to_chat(user, span_notice("You take [transfered]u from [src]."))
 		L.parent.update_appearance()
 		update_appearance()
@@ -97,4 +97,4 @@
 	SIGNAL_HANDLER
 	stop_fermentation()
 	if(reagents.total_volume)
-		timerid = addtimer(CALLBACK(src, .proc/start_fermentation), wait_before_start, TIMER_STOPPABLE)
+		timerid = addtimer(CALLBACK(src, PROC_REF(start_fermentation)), wait_before_start, TIMER_STOPPABLE)

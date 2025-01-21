@@ -62,7 +62,7 @@
 				tastes = tastes,\
 				eatverbs = eatverbs,\
 				bite_consumption = bite_consumption,\
-				on_consume = CALLBACK(src, .proc/on_consume))
+				on_consume = CALLBACK(src, PROC_REF(on_consume)))
 
 
 ///This proc handles processable elements, overwrite this if you want to add behavior such as slicing, forking, spooning, whatever, to turn the item into something else

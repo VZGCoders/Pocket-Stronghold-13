@@ -12,8 +12,8 @@
 	src.liquid_amount = liquid_amount
 	src.liquid_ratio = liquid_ratio
 
-	RegisterSignal(parent, COSMIG_ITEM_GRINDED, .proc/grind_item)
-	RegisterSignal(parent, COSMIG_REAGENT_GRINDED, .proc/grind_reagent)
+	RegisterSignal(parent, COSMIG_ITEM_GRINDED, PROC_REF(grind_item))
+	RegisterSignal(parent, COSMIG_REAGENT_GRINDED, PROC_REF(grind_reagent))
 
 /datum/component/grindable/proc/grind_item(obj/item/growable/source, obj/structure/quern/Q)
 	SIGNAL_HANDLER

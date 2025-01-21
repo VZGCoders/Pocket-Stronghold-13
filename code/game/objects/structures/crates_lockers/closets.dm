@@ -68,7 +68,7 @@
 
 /obj/structure/closet/Initialize(mapload)
 	if(mapload && !opened && isturf(loc))		// if closed, any item at the crate's loc is put in the contents
-		addtimer(CALLBACK(src, .proc/take_contents), 0)
+		addtimer(CALLBACK(src, PROC_REF(take_contents)), 0)
 	if(locked && secure)
 		create_password()
 	. = ..()
@@ -460,7 +460,7 @@
 			if(iscarbon(user))
 				add_fingerprint(user)
 			if(locked)
-				INVOKE_ASYNC(src, /datum/.proc/ui_interact, user)
+				INVOKE_ASYNC(src, TYPE_PROC_REF(/datum/, ui_interact), user)
 			else
 				locked = !locked
 				playsound(src, 'sound/items/locker.ogg', 25, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
